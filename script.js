@@ -27,6 +27,10 @@ var spelerY = 600; // y-positie van speler
 var beweegAlles = function () {
   // speler
 
+
+
+
+  
   // vijand
 
   // kogel
