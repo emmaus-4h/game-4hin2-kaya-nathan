@@ -65,7 +65,8 @@ var tekenAlles = function () {
   rect(spelerX - 25, spelerY - 25, 50, 50);
   fill("black");
   ellipse(spelerX, spelerY, 10, 10);
-
+rect(0,690,1280,200);
+  rect(0,0,1280,30)
   // punten en health
 
 };
@@ -111,7 +112,6 @@ function draw() {
     }
   }
   if (spelStatus === GAMEOVER) {
-    // teken game-over scherm
-
+    // teken game-over scher
   }
 }
