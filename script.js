@@ -16,14 +16,14 @@ const SPELEN = 1;
 const GAMEOVER = 2;
 var spelStatus = SPELEN;
 
-var spelerX = 600; // x-positie van speler
-var spelerY = 600; // y-positie van speler
+var spelerX = 200; // x-positie van speler
+var spelerY = 360; // y-positie van speler
 
 var kogelX = 600; // x-positie van kogel
 var kogelY = 600; // y-positie van kogel
 
-var vijandX = 1300; // x-positie van vijand
-var vijandY = 1300;// y-positie van vijand
+var vijandX = 1265 // x-positie van vijand
+var vijandY = 200// y-positie van vijand
 
 
 
@@ -78,11 +78,11 @@ spelStatus = GAMEOVER;
 
 
  // vijand
-  vijandX = vijandX  - 10
+  vijandX = vijandX - 8
 
-  if (vijandX < 0){
-    vijandX = 1280
-  };
+if (vijandX < 0){
+  vijandX = 1280
+ };
    
 
 
@@ -123,7 +123,7 @@ if (spelerX - vijandX < 50 &&
  */
 var tekenAlles = function () {
   // achtergrond
- background('blue');
+ background(108, 108, 108);
   
   // vijand
 
@@ -187,7 +187,13 @@ function draw() {
   }
   if (spelStatus === GAMEOVER) {
     // teken game-over scherm\
-    text("Reload voor nieuwe game", 100, 100)
-
+    text("game over klik spatie ", 200, 360)
+    textSize(100)
+if (keyIsDown (32)) {
+  spelStatus = SPELEN 
+    spelerY = 360
+  spelerX = 200
+vijandX = 1265
+}
   }
 };
