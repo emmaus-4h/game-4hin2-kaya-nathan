@@ -37,6 +37,8 @@ var speed_speler = 10;
 
 var shoot_ground = 69;
 var shoot_sky = 82;
+
+var health = 5
 /* ********************************************* */
 /* functies die je gebruikt in je game           */
 /* ********************************************* */
@@ -72,7 +74,7 @@ if  (spelerY > 694) {
   spelerY = 694
 };   
 
-if  (spelerY < 1) {
+if  (spelerY < 0) {
 spelStatus = GAMEOVER;
 };
 
@@ -83,7 +85,10 @@ spelStatus = GAMEOVER;
 if (vijandX < 0){
   vijandX = 1280
  };
-   
+
+    if (vijandX < 1 )   
+  { vijandY = Math.floor(Math.random() * 690.)
+};
 
 
 
@@ -103,18 +108,31 @@ if (vijandX < 0){
  */
 var verwerkBotsing = function () {
   // botsing speler tegen vijand
-if (spelerX - vijandX < 50 &&
-   spelerX - vijandX >-50 &&
-   spelerY - vijandY < 50 &&
-   spelerY - vijandY >-50)
- {
-   console.log("bots");
-   spelStatus = GAMEOVER;
+//if (spelerX - vijandX < 50 &&
+  // spelerX - vijandX >-50 &&
+//spelerY - vijandY < 50 &&
+ //  spelerY - vijandY >-50)
+ //{
+//   console.log("bots");
+//   spelStatus = GAMEOVER;
  
-}
+//};
   // botsing kogel tegen vijand
 
   // update punten en health
+
+if (spelerX - vijandX < 50 &&
+   spelerX - vijandX >-50 &&
+   spelerY - vijandY < 50 &&
+   spelerY - vijandY >-50) 
+   {health = health - 1 
+       spelerY = 360
+  spelerX = 200
+   };
+
+  if (health === 0){
+     spelStatus = GAMEOVER;
+  };
 
 };
 
@@ -130,6 +148,9 @@ var tekenAlles = function () {
   fill("black");
   rect(vijandX - 25, vijandY - 25, 50, 50);
 
+  if (vijandX < 0) 
+  { vijandY = Math.floor(Math.random() * 720. )
+}
   
 
   
@@ -185,6 +206,7 @@ function draw() {
       spelStatus = GAMEOVER;
     }
   }
+  
   if (spelStatus === GAMEOVER) {
     // teken game-over scherm\
     text("game over klik spatie ", 200, 360)
