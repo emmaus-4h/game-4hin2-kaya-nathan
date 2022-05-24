@@ -19,8 +19,8 @@ var spelStatus = SPELEN;
 var spelerX = 200; // x-positie van speler
 var spelerY = 360; // y-positie van speler
 
-var kogelX = 600; // x-positie van kogel
-var kogelY = 600; // y-positie van kogel
+var kogelX = spelerX; // x-positie van kogel
+var kogelY = spelerY; // y-positie van kogel
 
 var vijandX = 1265 // x-positie van vijand
 var vijandY = 200// y-positie van vijand
@@ -93,9 +93,14 @@ if (vijandX < 0){
 
 
   // kogel
- 
 
-    
+    kogelX= spelerX
+  kogelY = spelerY
+  
+if (keyIsDown(20))
+{kogelX = kogelX + 5
+}
+
 
   
   
@@ -155,7 +160,7 @@ var tekenAlles = function () {
 
   
   // kogel
- 
+ ellipse(kogelX - 25, kogelY - 25, 25, 25);
 
 
   // speler
