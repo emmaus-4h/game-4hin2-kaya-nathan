@@ -224,3 +224,19 @@ vijandX = 1265
 }
   }
 };
+
+
+//filler dingen begin  bro
+ if (spelStatus === GAMEOVER) {
+    // teken game-over scherm\
+    text("game over klik spatie ", 200, 360)
+    textSize(100)
+if (keyIsDown (32)) {
+  spelStatus = SPELEN 
+    spelerY = 360
+  spelerX = 200
+vijandX = 1265
+}
+  }
+};
+//filler dingen einde bro 
