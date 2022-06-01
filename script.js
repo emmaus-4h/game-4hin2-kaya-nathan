@@ -19,8 +19,8 @@ var spelStatus = SPELEN;
 var spelerX = 200; // x-positie van speler
 var spelerY = 360; // y-positie van speler
 
-var kogelX = 400; // x-positie van kogel
-var kogelY = 400; // y-positie van kogel
+var kogelX = 1934; // x-positie van kogel
+var kogelY = 5365; // y-positie van kogel
 var kogelvliegt = false
 
 var vijandX = 1265 // x-positie van vijand
@@ -35,7 +35,7 @@ var arrow_right = 39;
 
 var speed_speler = 10;
 
-
+var points = 0
 
 var health = 5
 /* ********************************************* */
@@ -83,21 +83,18 @@ spelStatus = GAMEOVER;
 
 if (vijandX < 0){
   vijandX = 1280
+  vijandY = random(100,700)
  };
 
-    if (vijandX < 1 )   
-  { vijandY = Math.floor(Math.random() * 690.)
-};
 
-
-
+  
   // kogel
 
 if ( kogelvliegt === false && 
     keyIsDown(82)){
   kogelvliegt = true
   kogelX = spelerX;
-  kogelY = kogelY;
+  kogelY = spelerY;
 }
   if (kogelvliegt === true) {
     kogelX = kogelX + 5
@@ -110,9 +107,13 @@ kogelY - vijandY >-50)
 {
 kogelvliegt = false;
 console.log("kill")
+  kogelY = 7823
+  vijandX = 1280
+  vijandY = random(100,700)
 }
 
   
+
 };
 
 /**
@@ -140,7 +141,16 @@ if (spelerX - vijandX < 50 &&
      spelStatus = GAMEOVER;
   };
 
+if (kogelX - vijandX < 50 &&
+kogelX - vijandX >-50 &&
+kogelY - vijandY < 50 &&
+kogelY - vijandY >-50) 
+{ points = points + 1
+}
+
 };
+
+
 
 /**
  * Tekent spelscherm
@@ -154,9 +164,7 @@ var tekenAlles = function () {
   fill("black");
   rect(vijandX - 25, vijandY - 25, 50, 50);
 
-  if (vijandX < 0) 
-  { vijandY = Math.floor(Math.random() * 720. )
-}
+
   
 
   
@@ -169,7 +177,13 @@ var tekenAlles = function () {
   rect(spelerX - 25, spelerY - 25, 50, 50);
 
   // punten en health
+ fill("black");
+  textSize(50);
+  text("points  "+points, 50,60);
 
+   fill("black");
+  textSize(50);
+  text("health "+health, 1075,60);
 };
 
 /**
@@ -227,17 +241,3 @@ vijandX = 1265
 };
 
 
-//filler dingen begin  bro
- if (spelStatus === GAMEOVER) {
-    // teken game-over scherm\
-    text("game over klik spatie ", 200, 360)
-    textSize(100)
-if (keyIsDown (32)) {
-  spelStatus = SPELEN 
-    spelerY = 360
-  spelerX = 200
-vijandX = 1265
-}
-  }
-};
-//filler dingen einde bro 
