@@ -19,8 +19,9 @@ var spelStatus = SPELEN;
 var spelerX = 200; // x-positie van speler
 var spelerY = 360; // y-positie van speler
 
-var kogelX = spelerX; // x-positie van kogel
-var kogelY = spelerY; // y-positie van kogel
+var kogelX = 400; // x-positie van kogel
+var kogelY = 400; // y-positie van kogel
+var kogelvliegt = false
 
 var vijandX = 1265 // x-positie van vijand
 var vijandY = 200// y-positie van vijand
@@ -35,8 +36,6 @@ var arrow_right = 39;
 var speed_speler = 10;
 
 
-var shoot_ground = 69;
-var shoot_sky = 82;
 
 var health = 5
 /* ********************************************* */
@@ -94,15 +93,25 @@ if (vijandX < 0){
 
   // kogel
 
-    kogelX= spelerX
-  kogelY = spelerY
-  
-if (keyIsDown(20))
-{kogelX = kogelX + 5
+if ( kogelvliegt === false && 
+    keyIsDown(82)){
+  kogelvliegt = true
+  kogelX = spelerX;
+  kogelY = kogelY;
+}
+  if (kogelvliegt === true) {
+    kogelX = kogelX + 5
+  }
+
+  if (kogelX - vijandX < 50 &&
+kogelX - vijandX >-50 &&
+kogelY - vijandY < 50 &&
+kogelY - vijandY >-50) 
+{
+kogelvliegt = false;
+console.log("kill")
 }
 
-
-  niggers
   
 };
 
@@ -113,15 +122,7 @@ if (keyIsDown(20))
  */
 var verwerkBotsing = function () {
   // botsing speler tegen vijand
-//if (spelerX - vijandX < 50 &&
-  // spelerX - vijandX >-50 &&
-//spelerY - vijandY < 50 &&
- //  spelerY - vijandY >-50)
- //{
-//   console.log("bots");
-//   spelStatus = GAMEOVER;
- 
-//};
+
   // botsing kogel tegen vijand
 
   // update punten en health
@@ -130,7 +131,7 @@ if (spelerX - vijandX < 50 &&
    spelerX - vijandX >-50 &&
    spelerY - vijandY < 50 &&
    spelerY - vijandY >-50) 
-   {health = health - 1 
+   { health = health - 1 
        spelerY = 360
   spelerX = 200
    };
