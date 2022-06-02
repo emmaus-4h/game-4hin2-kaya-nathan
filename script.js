@@ -37,7 +37,8 @@ var speed_speler = 10;
 
 var points = 0
 
-var health = 5
+var health = 10
+
 /* ********************************************* */
 /* functies die je gebruikt in je game           */
 /* ********************************************* */
@@ -81,9 +82,10 @@ spelStatus = GAMEOVER;
  // vijand
   vijandX = vijandX - 8
 
-if (vijandX < 0){
+if (vijandX < 0) {
   vijandX = 1280
   vijandY = random(100,700)
+  health = health - 1
  };
 
 
@@ -97,7 +99,7 @@ if ( kogelvliegt === false &&
   kogelY = spelerY;
 }
   if (kogelvliegt === true) {
-    kogelX = kogelX + 5
+    kogelX = kogelX + 10
   }
 
   if (kogelX - vijandX < 50 &&
@@ -110,6 +112,7 @@ console.log("kill")
   kogelY = 7823
   vijandX = 1280
   vijandY = random(100,700)
+  points = points + 1;
 }
 
   
@@ -141,12 +144,8 @@ if (spelerX - vijandX < 50 &&
      spelStatus = GAMEOVER;
   };
 
-if (kogelX - vijandX < 50 &&
-kogelX - vijandX >-50 &&
-kogelY - vijandY < 50 &&
-kogelY - vijandY >-50) 
-{ points = points + 1
-}
+
+
 
 };
 
@@ -232,10 +231,10 @@ function draw() {
     text("game over klik spatie ", 200, 360)
     textSize(100)
 if (keyIsDown (32)) {
-  spelStatus = SPELEN 
     spelerY = 360
   spelerX = 200
 vijandX = 1265
+  spelStatus = SPELEN;
 }
   }
 };
