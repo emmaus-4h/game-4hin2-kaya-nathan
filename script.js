@@ -37,6 +37,8 @@ var speed_speler = 10;
 var points = 0
 var health = 5
 
+
+
 /* ********************************************* */
 /* functies die je gebruikt in je game           */
 /* ********************************************* */
@@ -57,7 +59,7 @@ var beweegAlles = function draw () {
  /*valt naar beneden*/
   else 
   {spelerY = spelerY + 5 } 
-         
+
   if (keyIsDown (arrow_right)) {
     spelerX = spelerX + 10
   }
@@ -144,6 +146,10 @@ if (spelerX - vijandX < 50 &&
 
 };
 
+function preload() {
+ img1 = loadImage('pictures/graveyard.png');
+}
+
 
 
 /**
@@ -151,14 +157,33 @@ if (spelerX - vijandX < 50 &&
  */
 var tekenAlles = function () {
   // achtergrond
- background(108, 108, 108);
+
+image (img1, 0, 0 ,1280, 720)
+
+
   // vijand
   fill("black");
   rect(vijandX - 25, vijandY - 25, 50, 50);
   // kogel
  ellipse(kogelX - 25, kogelY - 25, 25, 25);
   // speler
-  fill("white");
+    fill ("white")
+  if (points === 10){
+    fill ("red")
+  }
+    if (points === 20){
+    fill ("red")
+  }
+    if (points === 30){
+    fill ("red")
+  }
+  if (points === 40){
+    fill ("red")
+  }
+    if (points === 50){
+    fill ("red")
+  }
+  
   rect(spelerX - 25, spelerY - 25, 50, 50);
   // punten en health
  fill("black");
@@ -168,6 +193,7 @@ var tekenAlles = function () {
   textSize(50);
   text("health "+health, 1075,60);
 };
+
 
 /**
  * return true als het gameover is
@@ -192,7 +218,8 @@ function setup() {
   createCanvas(1280, 720);
 
   // Kleur de achtergrond blauw, zodat je het kunt zien
-  background('blue');
+  
+  
 };
 
 /**
@@ -210,18 +237,7 @@ function draw() {
       spelstatus = START;
     }
   }
-if (spelstatus === START) {
-   background ("red")
-    text("game over klik spatie ", 200, 360)
-    textSize(100)
-  if (keyIsDown (13)) {
-    spelerY = 360
-  spelerX = 200
-vijandX = 1265
-  spelStatus = SPELEN;
-  health = 5;
-}
-  
+
   if (spelStatus === GAMEOVER) {
     // teken game-over scherm\
   background ("red")
@@ -233,6 +249,7 @@ if (keyIsDown (32)) {
 vijandX = 1265
   spelStatus = SPELEN;
   health = 5;
+  points = 0;
 }
   }
 };
