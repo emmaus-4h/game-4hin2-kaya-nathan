@@ -14,6 +14,7 @@
 
 const SPELEN = 1;
 const GAMEOVER = 2;
+const START = 3;
 var spelStatus = SPELEN;
 
 var spelerX = 200; // x-positie van speler
@@ -26,8 +27,6 @@ var kogelvliegt = false
 var vijandX = 1265 // x-positie van vijand
 var vijandY = 200// y-positie van vijand
 
-
-
 var arrow_up = 38;
 var arrow_down = 40;
 var arrow_left = 37;
@@ -36,8 +35,7 @@ var arrow_right = 39;
 var speed_speler = 10;
 
 var points = 0
-
-var health = 10
+var health = 5
 
 /* ********************************************* */
 /* functies die je gebruikt in je game           */
@@ -56,7 +54,6 @@ var beweegAlles = function draw () {
   if (keyIsDown(arrow_up)) {
     spelerY = spelerY - 10
   }
-    
  /*valt naar beneden*/
   else 
   {spelerY = spelerY + 5 } 
@@ -68,17 +65,21 @@ var beweegAlles = function draw () {
     spelerY = spelerY + 10
   }
   };
-
 /*grond*/
 if  (spelerY > 694) {
   spelerY = 694
 };   
+/*muren*/
+if  (spelerX < 25) {
+  spelerX = 25
+};   
+if  (spelerX > 1255) {
+spelerX = 1255
+};   
 
-if  (spelerY < 0) {
-spelStatus = GAMEOVER;
+if  (spelerY < 25) {
+spelerY = 25
 };
-
-
  // vijand
   vijandX = vijandX - 8
 
@@ -87,11 +88,7 @@ if (vijandX < 0) {
   vijandY = random(100,700)
   health = health - 1
  };
-
-
-  
   // kogel
-
 if ( kogelvliegt === false && 
     keyIsDown(82)){
   kogelvliegt = true
@@ -101,7 +98,6 @@ if ( kogelvliegt === false &&
   if (kogelvliegt === true) {
     kogelX = kogelX + 10
   }
-
   if (kogelX - vijandX < 50 &&
 kogelX - vijandX >-50 &&
 kogelY - vijandY < 50 &&
@@ -139,7 +135,6 @@ if (spelerX - vijandX < 50 &&
        spelerY = 360
   spelerX = 200
    };
-
   if (health === 0){
      spelStatus = GAMEOVER;
   };
@@ -157,29 +152,18 @@ if (spelerX - vijandX < 50 &&
 var tekenAlles = function () {
   // achtergrond
  background(108, 108, 108);
-  
   // vijand
-
   fill("black");
   rect(vijandX - 25, vijandY - 25, 50, 50);
-
-
-  
-
-  
   // kogel
  ellipse(kogelX - 25, kogelY - 25, 25, 25);
-
-
   // speler
   fill("white");
   rect(spelerX - 25, spelerY - 25, 50, 50);
-
   // punten en health
  fill("black");
   textSize(50);
   text("points  "+points, 50,60);
-
    fill("black");
   textSize(50);
   text("health "+health, 1075,60);
@@ -223,11 +207,24 @@ function draw() {
     tekenAlles();
     if (checkGameOver()) {
       spelStatus = GAMEOVER;
+      spelstatus = START;
     }
   }
+if (spelstatus === START) {
+   background ("red")
+    text("game over klik spatie ", 200, 360)
+    textSize(100)
+  if (keyIsDown (13)) {
+    spelerY = 360
+  spelerX = 200
+vijandX = 1265
+  spelStatus = SPELEN;
+  health = 5;
+}
   
   if (spelStatus === GAMEOVER) {
     // teken game-over scherm\
+  background ("red")
     text("game over klik spatie ", 200, 360)
     textSize(100)
 if (keyIsDown (32)) {
@@ -235,8 +232,10 @@ if (keyIsDown (32)) {
   spelerX = 200
 vijandX = 1265
   spelStatus = SPELEN;
+  health = 5;
 }
   }
 };
 
 
+      
