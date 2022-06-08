@@ -91,6 +91,11 @@ if (vijandX < 0) {
   health = health - 1
  };
   // kogel
+  if(keyIsDown(71)){
+  kogelX = spelerX;
+  kogelY = spelerY;
+    kogvliegt = true
+}
 if ( kogelvliegt === false && 
     keyIsDown(82)){
   kogelvliegt = true
