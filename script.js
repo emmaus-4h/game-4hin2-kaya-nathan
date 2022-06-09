@@ -32,6 +32,9 @@ var arrow_down = 40;
 var arrow_left = 37;
 var arrow_right = 39;
 
+var coinX = 100
+var coinY = 100
+
 var speed_speler = 10;
 
 var points = 0
@@ -91,6 +94,11 @@ if (vijandX < 0) {
   health = health - 1
  };
   // kogel
+if (kogelX > 1280){
+kogelX = spelerX;
+  kogelY = spelerY;
+}
+  
   if(keyIsDown(71)){
   kogelX = spelerX;
   kogelY = spelerY;
@@ -146,7 +154,14 @@ if (spelerX - vijandX < 50 &&
      spelStatus = GAMEOVER;
   };
 
-
+  // botsing speler tegen coins
+if (spelerX - coinX < 50 &&
+   spelerX - coinX >-50 &&
+   spelerY - coinY < 50 &&
+   spelerY - coinY >-50) 
+   { health = health + 1
+    coinX = random(1200,700)
+  coinY = random(1200,700)   };
 
 
 };
@@ -197,6 +212,10 @@ image (img1, 0, 0 ,1280, 720)
    fill("black");
   textSize(50);
   text("health "+health, 1075,60);
+
+ // coins
+ ellipse(coinX - 25, coinY - 25, 25, 25);
+  
 };
 
 
