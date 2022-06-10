@@ -95,15 +95,11 @@ if (vijandX < 0) {
  };
   // kogel
 if (kogelX > 1280){
+  kogelvliegt = false
 kogelX = spelerX;
   kogelY = spelerY;
 }
   
-  if(keyIsDown(71)){
-  kogelX = spelerX;
-  kogelY = spelerY;
-    kogvliegt = true
-}
 if ( kogelvliegt === false && 
     keyIsDown(82)){
   kogelvliegt = true
@@ -111,7 +107,7 @@ if ( kogelvliegt === false &&
   kogelY = spelerY;
 }
   if (kogelvliegt === true) {
-    kogelX = kogelX + 10
+    kogelX = kogelX + 50
   }
   if (kogelX - vijandX < 50 &&
 kogelX - vijandX >-50 &&
@@ -160,14 +156,15 @@ if (spelerX - coinX < 50 &&
    spelerY - coinY < 50 &&
    spelerY - coinY >-50) 
    { health = health + 1
-    coinX = random(1200,700)
-  coinY = random(1200,700)   };
+    coinX = random(100,700)
+  coinY = random(100,700)   };
 
 
 };
 
 function preload() {
- img1 = loadImage('pictures/graveyard.png');
+ img1 = loadImage('background happy.webp');
+  img2 = loadImage('pictures/gameover3.png');
 }
 
 
@@ -177,10 +174,7 @@ function preload() {
  */
 var tekenAlles = function () {
   // achtergrond
-
 image (img1, 0, 0 ,1280, 720)
-
-
   // vijand
   fill("black");
   rect(vijandX - 25, vijandY - 25, 50, 50);
@@ -264,9 +258,8 @@ function draw() {
 
   if (spelStatus === GAMEOVER) {
     // teken game-over scherm\
-  background ("red")
-    text("game over klik spatie ", 200, 360)
-    textSize(100)
+  image (img1, 0, 0 ,1280, 720)
+    image (img2,450 ,150, 400, 400)
 if (keyIsDown (32)) {
     spelerY = 360
   spelerX = 200
