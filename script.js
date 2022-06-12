@@ -272,17 +272,4 @@ vijandX = 1265
 };
 
 
- if (spelStatus === GAMEOVER) {
-    // teken game-over scherm\
-  image (img1, 0, 0 ,1280, 720)
-    image (img2,450 ,150, 400, 400)
-if (keyIsDown (32)) {
-    spelerY = 360
-  spelerX = 200
-vijandX = 1265
-  spelStatus = SPELEN;
-  health = 5;
-  points = 0;
-}
-  }
-};
+ 
