@@ -150,6 +150,7 @@ img3 = loadImage('pictures/arrowkey.png');
 img4 = loadImage('pictures/start3.png');
 img5 = loadImage('pictures/kogellazer.png');
 img6 = loadImage('pictures/enemy.gif');
+img7 = loadImage('pictures/player.gif')
 }
 
 /**
@@ -166,7 +167,7 @@ image (img1, 0, 0 ,1280, 720)
  ellipse(kogelX - 25, kogelY - 25, 23, 23);
  image(img5, kogelX - 55 , kogelY - 55 ,60 ,50);
   // speler
-    fill ("white")
+  fill ("white")
   if (points >= 10){
     fill ("red")
     vijandX = vijandX - 6
@@ -188,7 +189,8 @@ image (img1, 0, 0 ,1280, 720)
     vijandX = vijandX - 10
   }
   
-  rect(spelerX - 25, spelerY - 25, 50, 50);
+  rect(spelerX - 25, spelerY - 25, 10, 50);
+  image(img7, spelerX - 65 , spelerY - 45 ,100,100);
   // punten en health
  fill("black");
   textSize(50);
