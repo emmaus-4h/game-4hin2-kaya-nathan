@@ -148,6 +148,7 @@ function preload() {
 img2 = loadImage('pictures/gameover3.png');
 img3 = loadImage('pictures/arrowkey.png');
 img4 = loadImage('pictures/start3.png');
+img5 = loadImage('pictures/kogellazer.png');
 }
 
 /**
@@ -160,7 +161,8 @@ image (img1, 0, 0 ,1280, 720)
   fill("black");
   rect(vijandX - 25, vijandY - 25, 50, 50);
   // kogel
- ellipse(kogelX - 25, kogelY - 25, 25, 25);
+ ellipse(kogelX - 25, kogelY - 25, 23, 23);
+ image(img5, kogelX - 55 , kogelY - 55 ,60 ,50);
   // speler
     fill ("white")
   if (points >= 10){
