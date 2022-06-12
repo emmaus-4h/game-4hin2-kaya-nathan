@@ -83,6 +83,23 @@ spelerX = 1255
 if  (spelerY < 25) {
 spelerY = 25
 };
+
+  if (points >= 10){
+    vijandX = vijandX - 6
+  }
+    if (points >= 20){
+    vijandX = vijandX - 7
+  }
+    if (points >= 30){
+    vijandX = vijandX - 8
+  }
+  if (points >= 40){
+    vijandX = vijandX - 9
+  }
+    if (points >= 50){
+    vijandX = vijandX - 10
+  }
+  
  // vijand
   vijandX = vijandX - 5
 
@@ -150,7 +167,9 @@ img3 = loadImage('pictures/arrowkey.png');
 img4 = loadImage('pictures/start3.png');
 img5 = loadImage('pictures/kogellazer.png');
 img6 = loadImage('pictures/enemy.gif');
-img7 = loadImage('pictures/player.gif')
+img7 = loadImage('pictures/player.gif');
+img8 = loadImage('pictures/enter.png');
+img9 = loadImage('pictures/rbutton.png');
 }
 
 /**
@@ -167,23 +186,6 @@ image (img1, 0, 0 ,1280, 720)
  ellipse(kogelX - 25, kogelY - 25, 23, 23);
  image(img5, kogelX - 55 , kogelY - 55 ,60 ,50);
   // speler
-  fill ("white")
-  if (points >= 10){
-    vijandX = vijandX - 6
-  }
-    if (points >= 20){
-    vijandX = vijandX - 7
-  }
-    if (points >= 30){
-    vijandX = vijandX - 8
-  }
-  if (points >= 40){
-    vijandX = vijandX - 9
-  }
-    if (points >= 50){
-    vijandX = vijandX - 10
-  }
-  
   rect(spelerX - 25, spelerY - 25, 10, 50);
   image(img7, spelerX - 65 , spelerY - 45 ,100,100);
   // punten en health
@@ -234,6 +236,8 @@ if(spelStatus ===START){
  image (img1, 0, 0 ,1280, 720)
    image (img3, 1000, 500 ,0, 0)
   image (img4, 150, 250 ,0, 0)
+  image (img9, 100, 525 ,100, 100)
+   image (img5, 225, 525 ,100, 100)
   if (keyIsDown (32)) {
     spelStatus = SPELEN
   }
@@ -253,7 +257,7 @@ if(spelStatus ===START){
     // teken game-over scherm\
   image (img1, 0, 0 ,1280, 720)
     image (img2,450 ,150, 400, 400)
-    text("press enter", 500, 200)
+    image (img8,1100,500,150,150)
 if (keyIsDown (13)) {
     spelerY = 360
   spelerX = 200
