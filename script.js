@@ -69,8 +69,8 @@ var beweegAlles = function draw () {
   }
   };
 /*grond*/
-if  (spelerY > 694) {
-  spelerY = 694
+if  (spelerY > 650) {
+  spelerY = 650
 };   
 /*muren*/
 if  (spelerX < 25) {
@@ -88,7 +88,7 @@ spelerY = 25
 
 if (vijandX < 0) {
   vijandX = 1280
-  vijandY = random(100,700)
+  vijandY = random(100,650)
   health = health - 1
  };
   // kogel
@@ -125,7 +125,7 @@ kogelvliegt = false;
 console.log("kill")
   kogelY = 7823
   vijandX = 1280
-  vijandY = random(100,700)
+  vijandY = random(100,650)
   points = points + 1;
 }
 // update punten en health & botsing speler tegen vijand
@@ -169,23 +169,18 @@ image (img1, 0, 0 ,1280, 720)
   // speler
   fill ("white")
   if (points >= 10){
-    fill ("red")
     vijandX = vijandX - 6
   }
     if (points >= 20){
-    fill ("blue")
     vijandX = vijandX - 7
   }
     if (points >= 30){
-    fill ("green")
     vijandX = vijandX - 8
   }
   if (points >= 40){
-    fill (51,0,102)
     vijandX = vijandX - 9
   }
     if (points >= 50){
-    fill (255,255,0)
     vijandX = vijandX - 10
   }
   
