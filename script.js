@@ -32,8 +32,6 @@ var arrow_down = 40;
 var arrow_left = 37;
 var arrow_right = 39;
 
-var coinX = 100
-var coinY = 100
 
 var speed_speler = 10;
 
@@ -54,20 +52,20 @@ var beweegAlles = function draw () {
  background('blue'); 
   {
     if (keyIsDown (arrow_left)) {
-    spelerX = spelerX - 10
+    spelerX = spelerX - 15
   }
   if (keyIsDown(arrow_up)) {
-    spelerY = spelerY - 10
+    spelerY = spelerY - 15
   }
  /*valt naar beneden*/
   else 
   {spelerY = spelerY + 5 } 
 
   if (keyIsDown (arrow_right)) {
-    spelerX = spelerX + 10
+    spelerX = spelerX + 15
   }
   if (keyIsDown (arrow_down)) {
-    spelerY = spelerY + 10
+    spelerY = spelerY + 15
   }
   };
 /*grond*/
@@ -86,7 +84,7 @@ if  (spelerY < 25) {
 spelerY = 25
 };
  // vijand
-  vijandX = vijandX - 8
+  vijandX = vijandX - 5
 
 if (vijandX < 0) {
   vijandX = 1280
@@ -96,8 +94,7 @@ if (vijandX < 0) {
   // kogel
 if (kogelX > 1280){
   kogelvliegt = false
-kogelX = spelerX;
-  kogelY = spelerY;
+kogelX = 1400;
 }
   
 if ( kogelvliegt === false && 
@@ -109,7 +106,17 @@ if ( kogelvliegt === false &&
   if (kogelvliegt === true) {
     kogelX = kogelX + 50
   }
-  if (kogelX - vijandX < 50 &&
+
+};
+
+/**
+ * Checkt botsingen
+ * Verwijdert neergeschoten dingen
+ * Updatet globale variabelen punten en health
+ */
+var verwerkBotsing = function () {
+  // botsing kogel tegen vijand
+ if (kogelX - vijandX < 50 &&
 kogelX - vijandX >-50 &&
 kogelY - vijandY < 50 &&
 kogelY - vijandY >-50) 
@@ -121,23 +128,7 @@ console.log("kill")
   vijandY = random(100,700)
   points = points + 1;
 }
-
-  
-
-};
-
-/**
- * Checkt botsingen
- * Verwijdert neergeschoten dingen
- * Updatet globale variabelen punten en health
- */
-var verwerkBotsing = function () {
-  // botsing speler tegen vijand
-
-  // botsing kogel tegen vijand
-
-  // update punten en health
-
+// update punten en health & botsing speler tegen vijand
 if (spelerX - vijandX < 50 &&
    spelerX - vijandX >-50 &&
    spelerY - vijandY < 50 &&
@@ -150,24 +141,14 @@ if (spelerX - vijandX < 50 &&
      spelStatus = GAMEOVER;
   };
 
-  // botsing speler tegen coins
-if (spelerX - coinX < 50 &&
-   spelerX - coinX >-50 &&
-   spelerY - coinY < 50 &&
-   spelerY - coinY >-50) 
-   { health = health + 1
-    coinX = random(100,700)
-  coinY = random(100,700)   };
-
-
 };
 
 function preload() {
- img1 = loadImage('background happy.webp');
-  img2 = loadImage('pictures/gameover3.png');
+  img1 = loadImage('background happy.webp');
+img2 = loadImage('pictures/gameover3.png');
+img3 = loadImage('pictures/arrowkey.png');
+img4 = loadImage('pictures/start3.png');
 }
-
-
 
 /**
  * Tekent spelscherm
@@ -182,20 +163,25 @@ image (img1, 0, 0 ,1280, 720)
  ellipse(kogelX - 25, kogelY - 25, 25, 25);
   // speler
     fill ("white")
-  if (points === 10){
+  if (points >= 10){
     fill ("red")
+    vijandX = vijandX - 6
   }
-    if (points === 20){
-    fill ("red")
+    if (points >= 20){
+    fill ("blue")
+    vijandX = vijandX - 7
   }
-    if (points === 30){
-    fill ("red")
+    if (points >= 30){
+    fill ("green")
+    vijandX = vijandX - 8
   }
-  if (points === 40){
-    fill ("red")
+  if (points >= 40){
+    fill (51,0,102)
+    vijandX = vijandX - 9
   }
-    if (points === 50){
-    fill ("red")
+    if (points >= 50){
+    fill (255,255,0)
+    vijandX = vijandX - 10
   }
   
   rect(spelerX - 25, spelerY - 25, 50, 50);
@@ -207,11 +193,7 @@ image (img1, 0, 0 ,1280, 720)
   textSize(50);
   text("health "+health, 1075,60);
 
- // coins
- ellipse(coinX - 25, coinY - 25, 25, 25);
-  
 };
-
 
 /**
  * return true als het gameover is
@@ -246,6 +228,16 @@ function setup() {
  * uitgevoerd door de p5 library, nadat de setup functie klaar is
  */
 function draw() {
+  //startscherm
+if(spelStatus ===START){
+ image (img1, 0, 0 ,1280, 720)
+   image (img3, 1000, 500 ,0, 0)
+  image (img4, 150, 250 ,0, 0)
+  if (keyIsDown (32)) {
+    spelStatus = SPELEN
+  }
+}
+//speelscherm
   if (spelStatus === SPELEN) {
     beweegAlles();
     verwerkBotsing();
@@ -255,16 +247,17 @@ function draw() {
       spelstatus = START;
     }
   }
-
+//gameover scherm
   if (spelStatus === GAMEOVER) {
     // teken game-over scherm\
   image (img1, 0, 0 ,1280, 720)
     image (img2,450 ,150, 400, 400)
-if (keyIsDown (32)) {
+    text("press enter", 500, 200)
+if (keyIsDown (13)) {
     spelerY = 360
   spelerX = 200
 vijandX = 1265
-  spelStatus = SPELEN;
+  spelStatus = START;
   health = 5;
   points = 0;
 }
